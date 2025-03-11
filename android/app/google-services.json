@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "777246099575",
+    "project_id": "kp2-media",
+    "storage_bucket": "kp2-media.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:777246099575:android:33f43c7127ea9326929e72",
+        "android_client_info": {
+          "package_name": "com.company.kp2"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAI75rKud2U1R0GGqvz6YOImS6-Jlkt99A"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
