@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:kp2/screens/profile_page.dart';
-import 'package:kp2/utils/navigation.dart';
+import 'package:kp2/model/user_model.dart';
 
 class PersonalInfo extends StatelessWidget {
-  const PersonalInfo({super.key});
+  final UserInfor userData;
+  const PersonalInfo({super.key, required this.userData});
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +24,8 @@ class PersonalInfo extends StatelessWidget {
         leading: IconButton(
           icon: Icon(Icons.arrow_back_ios, color: Colors.black,size: h * 0.025,),
           onPressed: () {
-            NavigationHelper.navigatingBackToPreviousScreen(context , const Profile());
+            Navigator.pop(context);
+          //  NavigationHelper.navigatingBackToPreviousScreen(context ,  Profile(userData: userData,));
           },
         ),
         backgroundColor: Colors.white,
@@ -37,16 +38,19 @@ class PersonalInfo extends StatelessWidget {
           children: [
             SizedBox(height: 10),
             buildLabel("Name"),
-            buildTextField(""),
+            buildTextField(userData.fullname),
             
             buildLabel("Email"),
-            buildTextField(""),
+            buildTextField(userData.email),
+
+             buildLabel("Tel"),
+            buildTextField(userData.personalTelephone),
 
             buildLabel("Nationality"),
-            buildTextField("",),
+            buildTextField(userData.country),
 
             buildLabel("Date of Birth"),
-            buildTextField("",),
+            buildTextField(userData.dob),
           ],
         ),
       ),
@@ -67,8 +71,9 @@ class PersonalInfo extends StatelessWidget {
     );
   }
 
-  Widget buildTextField(String hintText, {int maxLines = 1}) {
+  Widget buildTextField(String text, {int maxLines = 1}) {
     return TextField(
+      controller: TextEditingController(text: text),
       maxLines: maxLines,
       readOnly: true,
       decoration: InputDecoration(
@@ -81,9 +86,9 @@ class PersonalInfo extends StatelessWidget {
         ),
       ),
       style: GoogleFonts.poppins(
-        fontSize: 14,
+        fontSize: 12,
         fontWeight: FontWeight.w400,
-        color: Colors.black87,
+        color: Colors.black54,
       ),
     );
   }

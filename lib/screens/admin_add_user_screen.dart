@@ -1,10 +1,13 @@
+
 import 'package:flutter/material.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
+import 'package:kp2/services/auth_services.dart';
 
 
 class AdminScreen extends StatefulWidget {
+  const AdminScreen({super.key});
+
   @override
   _AdminScreenState createState() => _AdminScreenState();
 }
@@ -38,10 +41,15 @@ class _AdminScreenState extends State<AdminScreen> {
       });
     }
   }
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Admin Screen'),
+        title: Text('Admin Screen', style: GoogleFonts.poppins(
+          fontSize: 12,
+          fontWeight: FontWeight.w300,
+          color: Colors.black87,
+        ),),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -68,7 +76,7 @@ class _AdminScreenState extends State<AdminScreen> {
 
              buildLabel("D.O.B"),
              buildTextFieldDOB( controller: _dobController,  onTap: () {
-                FocusScope.of(context).requestFocus(new FocusNode());
+                FocusScope.of(context).requestFocus(FocusNode());
                 _selectDate(context);
               }, validator: (value) {
                 if (value == null || value.isEmpty) {
@@ -170,39 +178,24 @@ class _AdminScreenState extends State<AdminScreen> {
 
   void _addUser() {
     if (_formKey.currentState!.validate()) {
-      FirebaseFirestore.instance.collection('users').add({
-        'personal_details': {
-        'fullname': _fullnameController.text,
-        'email': _emailController.text,
-        'date_of_birth': _dobController.text,
-        'telephone': _telephoneController.text,
-        },
-        
-        'emergency_contact': {
-          'name': _emergencyContactNameController.text,
-          'telephone': _emergencyContactTelephoneController.text,
-          'relationship': _emergencyContactRelationshipController.text,
-        },
-        'department': _departmentController.text,
-        'address': {
-          'post_code': _postCodeController.text,
-          'city': _cityController.text,
-          'country': _countryController.text,
-          'detail_address': _detailAddressController.text,
-        },
-      }).then((value) {
-        print('User Added');
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('User added successfully')),
-        );
-      }).catchError((error) {
-        print('Failed to add user: $error');
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('Failed to add user')),
-        );
-      });
+      
+      registerUser(
+        context,
+         _fullnameController,
+  _emailController,
+  _dobController,
+  _telephoneController,
+  _emergencyContactNameController,
+  _emergencyContactTelephoneController,
+  _emergencyContactRelationshipController,
+  _countryController,
+  _departmentController,
+  _postCodeController,
+  _detailAddressController,
+  _cityController,);
     }
   }
+  
   Widget buildTextField( {int maxLines = 1, TextEditingController? controller, required String? Function(dynamic value) validator}) {
     return TextField(
       controller: controller,

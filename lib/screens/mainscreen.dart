@@ -1,12 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:kp2/screens/admin_add_user_screen.dart';
+import 'package:kp2/model/events_model.dart';
+import 'package:kp2/model/user_model.dart';
 import 'package:kp2/screens/homepage.dart';
 import 'package:kp2/screens/profile_page.dart';
 import 'package:kp2/screens/team_members.dart';
+import 'package:kp2/screens/wall.dart';
 
 class Mainscreen extends StatefulWidget {
-  const Mainscreen({super.key});
+  final UserInfor userData;
+   final List<Event> events;
 
+  const Mainscreen({super.key, required this.userData, required this.events});
   @override
   State<Mainscreen> createState() => _MainscreenState();
 }
@@ -16,6 +20,8 @@ class Mainscreen extends StatefulWidget {
 class _MainscreenState extends State<Mainscreen> {
   @override
   Widget build(BuildContext context) {
+   print("Mainscreen received userData: ${widget.userData.fullname}");
+   print("Mainscreen recieved ::${widget.events[0].title}");
      double h = MediaQuery.of(context).size.height;
     double w = MediaQuery.of(context).size.width;
     return  Scaffold(
@@ -62,10 +68,10 @@ class _MainscreenState extends State<Mainscreen> {
     return IndexedStack(
       index: _currentIndex,
       children: [
-        const MainScreen(),
+        MainScreen(userData: widget.userData, events: widget.events,),
         const TeamMembers(),
-        AdminScreen(),
-        const Profile(),
+        MyWall(),
+         Profile(userData: widget.userData),
          
       ],
     );

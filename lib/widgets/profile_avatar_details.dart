@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:kp2/model/user_model.dart';
 
 class ProfileAvatarDetails extends StatefulWidget {
-  const ProfileAvatarDetails({super.key});
+  final UserInfor userData;
+  const ProfileAvatarDetails({super.key, required this.userData});
 
   @override
   State<ProfileAvatarDetails> createState() => _ProfileAvatarDetailsState();
@@ -48,7 +50,7 @@ class _ProfileAvatarDetailsState extends State<ProfileAvatarDetails> {
           //name
 
           Text(
-            "Derrick Opoku Nyame",
+            widget.userData.fullname,
             style: GoogleFonts.poppins(
               textStyle: TextStyle(
                 fontSize: 11,
@@ -60,7 +62,7 @@ class _ProfileAvatarDetailsState extends State<ProfileAvatarDetails> {
           SizedBox(height: h * 0.01),
 
           Text(
-            "derrick@gmail.com",
+            widget.userData.email,
             style: GoogleFonts.poppins(
               textStyle: TextStyle(
                 fontSize: 11,
@@ -72,7 +74,7 @@ class _ProfileAvatarDetailsState extends State<ProfileAvatarDetails> {
           SizedBox(height: h * 0.01),
 
           Text(
-            "Media Team . Since 2024",
+            widget.userData.department,
             style: GoogleFonts.poppins(
               textStyle: TextStyle(
                 fontSize: 11,

@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:kp2/model/user_model.dart';
 import 'package:kp2/widgets/general_info.dart';
 import 'package:kp2/widgets/profile_avatar_details.dart';
 import 'package:kp2/widgets/settings_info.dart';
 
 class Profile extends StatefulWidget {
-  const Profile({super.key});
+  final UserInfor userData;
+  const Profile({super.key, required this.userData});
 
   @override
   State<Profile> createState() => _ProfileState();
@@ -14,6 +16,7 @@ class Profile extends StatefulWidget {
 class _ProfileState extends State<Profile> {
   @override
   Widget build(BuildContext context) {
+    print("Profile page received userData: ${widget.userData.department}");
      double h = MediaQuery.of(context).size.height;
      double w = MediaQuery.of(context).size.width;
     return  Scaffold(
@@ -39,16 +42,16 @@ class _ProfileState extends State<Profile> {
             SizedBox(height: h * 0.02),
           
             // circle avater
-            ProfileAvatarDetails(),
+            ProfileAvatarDetails(userData: widget.userData),
           
           
           
             // General details
            
           
-            GeneralInfo(),
+            GeneralInfo(userData: widget.userData),
             SizedBox(height: h * 0.02),
-            SettingsInfo()
+            SettingsInfo(userData: widget.userData)
           ],),
         ),
       ),

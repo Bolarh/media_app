@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:kp2/screens/profile_page.dart';
-import 'package:kp2/utils/navigation.dart';
+import 'package:kp2/model/user_model.dart';
 
 class AddressView extends StatelessWidget {
-  const AddressView({super.key});
+   final UserInfor userData;
+  const AddressView({super.key, required this.userData});
 
   @override
   Widget build(BuildContext context) {
+    print("AddressView received userData: ${userData.fullname}");
     double h = MediaQuery.of(context).size.height;
     double w = MediaQuery.of(context).size.width;
     return  Scaffold(
@@ -24,7 +25,8 @@ class AddressView extends StatelessWidget {
         leading: IconButton(
           icon: Icon(Icons.arrow_back_ios, color: Colors.black,size: h * 0.025,),
           onPressed: () {
-            NavigationHelper.navigatingBackToPreviousScreen(context , const Profile());
+            Navigator.pop(context);
+            // NavigationHelper.navigatingBackToPreviousScreen(context ,  Profile(userData: userData,));
           },
         ),
         backgroundColor: Colors.white,
@@ -37,7 +39,7 @@ class AddressView extends StatelessWidget {
           children: [
             SizedBox(height: 10),
             buildLabel("Country"),
-            buildTextField("United Kingdom"),
+            buildTextField(userData.country),
             
             buildLabel("County"),
             buildTextField("County"),
@@ -49,7 +51,7 @@ class AddressView extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       buildLabel("City"),
-                      buildTextField("London"),
+                      buildTextField(userData.country),
                     ],
                   ),
                 ),
@@ -59,7 +61,7 @@ class AddressView extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       buildLabel("Post Code"),
-                      buildTextField("SE14 6RF"),
+                      buildTextField(userData.postCode),
                     ],
                   ),
                 ),
@@ -67,7 +69,7 @@ class AddressView extends StatelessWidget {
             ),
 
             buildLabel("Detail Address"),
-            buildTextField("36 Barriedale New Cross", maxLines: 2),
+            buildTextField(userData.detailedAddress, maxLines: 2),
           ],
         ),
       ),
@@ -88,8 +90,9 @@ class AddressView extends StatelessWidget {
     );
   }
 
-  Widget buildTextField(String hintText, {int maxLines = 1}) {
+  Widget buildTextField(String text, {int maxLines = 1}) {
     return TextField(
+      controller: TextEditingController(text: text),
       maxLines: maxLines,
       readOnly: true,
       decoration: InputDecoration(
@@ -102,9 +105,9 @@ class AddressView extends StatelessWidget {
         ),
       ),
       style: GoogleFonts.poppins(
-        fontSize: 14,
-        fontWeight: FontWeight.w400,
-        color: Colors.black87,
+        fontSize: 12,
+        fontWeight: FontWeight.w300,
+        color: Colors.black54,
       ),
     );
   }

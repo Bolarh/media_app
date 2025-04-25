@@ -1,13 +1,13 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:kp2/screens/mainscreen.dart';
+import 'package:kp2/screens/login_screen.dart';
 
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
      options: const FirebaseOptions(
-      apiKey: "",
+      apiKey: "AIzaSyAI75rKud2U1R0GGqvz6YOImS6-Jlkt99A",
       appId: "1:777246099575:android:33f43c7127ea9326929e72",
       messagingSenderId: "777246099575",
       projectId: "kp2-media",
@@ -22,7 +22,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const MaterialApp(
-      home: Mainscreen(),
+      home: SignInScreen(),
     );
   }
 }

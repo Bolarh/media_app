@@ -1,17 +1,34 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:intl/intl.dart';
+import 'package:kp2/model/events_model.dart';
+import 'package:kp2/model/user_model.dart';
 import 'package:kp2/widgets/top_info_event_card.dart';
 
-class MyInfo extends StatefulWidget {
-  const MyInfo({super.key});
+class MyInfo extends StatelessWidget {
+  final UserInfor? userData;
+   final List<Event> events;
 
-  @override
-  State<MyInfo> createState() => _MyInfoState();
-}
+  const MyInfo({super.key, this.userData, required this.events});
 
-class _MyInfoState extends State<MyInfo> {
+  String _getGreeting() {
+    final hour = DateTime.now().hour;
+
+    if (hour < 12) {
+      return 'Good morning';
+    } else if (hour < 17) {
+      return 'Good afternoon';
+    } else {
+      return 'Good evening';
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
+     print("new : ${userData!.fullname}");
+     String firstName = userData?.fullname.split(' ').first ?? 'User';
+     String formattedDate = DateFormat('EEEE, d MMMM yyyy').format(DateTime.now());
+    String greeting = _getGreeting();
     double h = MediaQuery.of(context).size.height;
     double w = MediaQuery.of(context).size.width;
     return SizedBox(
@@ -31,7 +48,7 @@ class _MyInfoState extends State<MyInfo> {
                 children: [
                   // Date
                   Text(
-                    "Tuesday, 25 February 2025",
+                    formattedDate,
                     style: GoogleFonts.lato(
                       textStyle: TextStyle(
                         fontSize: 12,
@@ -41,7 +58,7 @@ class _MyInfoState extends State<MyInfo> {
                     ),
                   ),
                   Text(
-                    "Good morning, Derrick!",
+                    "$greeting, $firstName",
                     style: GoogleFonts.lato(
                       textStyle: TextStyle(
                         fontSize: 12,
@@ -58,7 +75,7 @@ class _MyInfoState extends State<MyInfo> {
             left: 0.0,
             top: MediaQuery.of(context).size.height * 0.1,
             right: 0.0,
-            child:EventsCard(),
+            child:EventsCard(events: events,),
           )
         ],
       ),

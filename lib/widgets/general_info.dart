@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:kp2/model/user_model.dart';
 import 'package:kp2/utils/navigation.dart';
 import 'package:kp2/widgets/detailed_address_page.dart';
 import 'package:kp2/widgets/detailed_contacts.dart';
 import 'package:kp2/widgets/personal_info.dart';
 
 class GeneralInfo extends StatefulWidget {
-  const GeneralInfo({super.key});
+  final UserInfor userData;
+  const GeneralInfo({super.key, required this.userData});
 
   @override
   State<GeneralInfo> createState() => _GeneralInfoState();
@@ -35,7 +37,7 @@ class _GeneralInfoState extends State<GeneralInfo> {
           // SizedBox(height: h * 0.02),
           InkWell(
             onTap: (){
-               NavigationHelper.navigatingToNextScreen(context, const PersonalInfo());
+               NavigationHelper.navigatingToNextScreen(context,  PersonalInfo(userData: widget.userData,));
             },
             child: Padding(
               padding: EdgeInsets.only(top: h * 0.02),
@@ -70,7 +72,7 @@ class _GeneralInfoState extends State<GeneralInfo> {
                     Divider(height: h*0.05,thickness: 1, color: Colors.grey.shade100,),
           InkWell(
             onTap: () {
-                  NavigationHelper.navigatingToNextScreen(context, const DetailedContacts());
+                  NavigationHelper.navigatingToNextScreen(context,  DetailedContacts(userData: widget.userData));
                 },
             child: Padding(
               padding: EdgeInsets.only(top: h * 0.02),
@@ -105,7 +107,7 @@ class _GeneralInfoState extends State<GeneralInfo> {
                     Divider(height: h*0.05,thickness: 1, color: Colors.grey.shade100,),
           InkWell(
              onTap: () {
-                  NavigationHelper.navigatingToNextScreen(context, const AddressView());
+                  NavigationHelper.navigatingToNextScreen(context,  AddressView(userData: widget.userData,));
                 },
             child: Padding(
               padding: EdgeInsets.only(top: h * 0.02),
