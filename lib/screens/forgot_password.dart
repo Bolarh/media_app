@@ -39,7 +39,7 @@ SizedBox(height: h*0.15),
                 "Forgot Password?",
                 style: GoogleFonts.poppins(
                   textStyle: TextStyle(
-                    fontSize: 11,
+                    fontSize: 12,
                     fontWeight: FontWeight.w400,
                     color: Colors.black,
                   ),
@@ -50,7 +50,7 @@ SizedBox(height: h*0.15),
                 "Enter your email adress to recieve a password reset link and regain control of your account",
                 style: GoogleFonts.poppins(
                   textStyle: TextStyle(
-                    fontSize: 11,
+                    fontSize: 12,
                     fontWeight: FontWeight.w400,
                     color: Colors.black45,
                   ),
@@ -64,7 +64,7 @@ SizedBox(height: h*0.15),
                   "Email",
                   style: GoogleFonts.poppins(
                     textStyle: TextStyle(
-                      fontSize: 11,
+                      fontSize: 12,
                       fontWeight: FontWeight.w400,
                       color: Colors.black45,
                     ),
@@ -72,7 +72,7 @@ SizedBox(height: h*0.15),
                 ),
               ),
               Container(
-                height: h * 0.08,
+                //height: h * 0.08,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(6),
                   border: Border.all(
@@ -131,11 +131,11 @@ SizedBox(height: h*0.15),
                   ),
                   child: Center(
                       child: Padding(
-                    padding: const EdgeInsets.all(8.0),
+                    padding: const EdgeInsets.all(9.0),
                     child: Text(
-                      "request a link",
+                      "Request a link",
                       style: GoogleFonts.poppins(
-                        fontSize: 11,
+                        fontSize: 12,
                         fontWeight: FontWeight.w300,
                         color: Colors.white,
                       ),

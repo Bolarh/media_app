@@ -324,7 +324,7 @@ Future<void> userLogout(BuildContext context) async {
   try {
     await FirebaseAuth.instance.signOut();
     print('User logged out successfully');
-    Navigator.pop(context);
+    Navigator.pushReplacementNamed(context, '/login');
   } catch (e) {
     print('Error logging out user: $e');
   }

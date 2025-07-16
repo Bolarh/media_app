@@ -30,7 +30,7 @@ class _SigninFormsState extends State<SigninForms> {
           Text(
             "Log into your account",
             style: GoogleFonts.poppins(
-              fontSize: 12,
+              fontSize: h*0.03,
               fontWeight: FontWeight.bold,
               color: Colors.black,
             ),
@@ -61,7 +61,7 @@ class _SigninFormsState extends State<SigninForms> {
                 child: Text(
                   "Forgot Password?",
                   style: GoogleFonts.poppins(
-                    fontSize: 12,
+                    fontSize: 13,
                     fontWeight: FontWeight.w300,
                     color: Colors.black,
                   ),
@@ -110,11 +110,11 @@ class _SigninFormsState extends State<SigninForms> {
       ),
       child: Center(
           child: Padding(
-        padding: const EdgeInsets.all(8.0),
+        padding: const EdgeInsets.all(10.0),
         child: Text(
           "Login",
           style: GoogleFonts.poppins(
-            fontSize: 12,
+            fontSize: 13,
             fontWeight: FontWeight.w300,
             color: Colors.white,
           ),
@@ -123,49 +123,55 @@ class _SigninFormsState extends State<SigninForms> {
     );
   }
 
-  Widget buildTextField(
-      {int maxLines = 1,
-      TextEditingController? controller,
-      required String? Function(dynamic value) validator}) {
-    double h = MediaQuery.of(context).size.height;
-    double w = MediaQuery.of(context).size.width;
-    return Container(
-      height: h * 0.08,
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(6),
-        border: Border.all(
-          color: Colors.deepPurple.shade100, // Border color
-          width: 1, // Border thickness
+ Widget buildTextField({
+  int maxLines = 1,
+  TextEditingController? controller,
+  required String? Function(dynamic value) validator,
+}) {
+  double h = MediaQuery.of(context).size.height;
+  double w = MediaQuery.of(context).size.width;
+
+  return Container(
+    margin: EdgeInsets.only(bottom: h * 0.015),
+    decoration: BoxDecoration(
+      borderRadius: BorderRadius.circular(6),
+      boxShadow: [
+        BoxShadow(
+          color: Color.fromARGB(255, 236, 230, 230),
+          spreadRadius: 2,
+          blurRadius: 4,
+          offset: Offset(0, 4),
         ),
-        boxShadow: [
-          BoxShadow(
-            color: Color.fromARGB(255, 236, 230, 230),
-            spreadRadius: 2,
-            blurRadius: 4,
-            offset: Offset(0, 4),
-          ),
-        ],
+      ],
+    ),
+    child: TextFormField(
+      controller: controller,
+      maxLines: maxLines,
+      validator: validator,
+      decoration: InputDecoration(
+        filled: true,
+        fillColor: Colors.white, // Full white background
+        contentPadding: EdgeInsets.symmetric(vertical: 18, horizontal: 16),
+        enabledBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(6),
+          borderSide: BorderSide(color: Colors.deepPurple.shade100),
+        ),
+        focusedBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(6),
+          borderSide: BorderSide(color: Colors.deepPurple),
+        ),
+        border: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(6),
+        ),
       ),
-      child: TextField(
-        controller: controller,
-        maxLines: maxLines,
-        decoration: InputDecoration(
-          contentPadding: EdgeInsets.symmetric(vertical: 10, horizontal: 16),
-          filled: true,
-          fillColor: Colors.white70,
-          border: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(6),
-            borderSide: BorderSide.none,
-          ),
-        ),
-        style: GoogleFonts.poppins(
-          fontSize: 12,
-          fontWeight: FontWeight.w300,
-          color: Colors.black87,
-        ),
+      style: GoogleFonts.poppins(
+        fontSize: 13,
+        fontWeight: FontWeight.w400,
+        color: Colors.black87,
       ),
-    );
-  }
+    ),
+  );
+}
 
   Widget buildLabel(String text) {
     return Padding(
@@ -206,7 +212,7 @@ class _PasswordTextFieldState extends State<PasswordTextField> {
     double h = MediaQuery.of(context).size.height;
     
     return Container(
-      height: h * 0.08,
+      //height: h * 0.08,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(6),
         border: Border.all(
@@ -229,8 +235,8 @@ class _PasswordTextFieldState extends State<PasswordTextField> {
           suffixIcon: IconButton(
             icon: Image.asset(
               _isObscured
-                  ? 'hide.png' 
-                  : 'view.png',    
+                  ? 'assets/hide.png' 
+                  : 'assets/view.png',    
               
               height: h*0.03,
               color: Colors.deepPurple, // Optional: Change color if needed
